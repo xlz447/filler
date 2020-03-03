@@ -20,4 +20,16 @@
 # include "get_next_line.h"
 # include "mlx.h"
 
+typedef struct		s_filler
+{
+	unsigned int	player;
+	char 			symbol;
+	unsigned int	map_h;
+	unsigned int	map_w;
+	char			**map;
+	unsigned int	piece_h;
+	unsigned int	piece_w;
+	char			**piece;
+}					t_f;
+
 #endif
