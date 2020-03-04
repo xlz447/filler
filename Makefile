@@ -32,7 +32,8 @@ INC			=	$(addprefix -I,$(INC_PATH))
 
 OBJ_NAME	=	$(SRC_NAME:.c=.o)
 
-SRC_NAME	=	filler.c
+SRC_NAME	=	filler.c \
+				solve.c
 
 all:
 	@make -C $(LFT_PATH)

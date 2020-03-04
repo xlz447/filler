@@ -14,7 +14,7 @@
 # define GET_NEXT_LINE_H
 
 # define FD_SIZE 4864
-# define GNL_BUFF_SIZE 1024
+# define GNL_BUFF_SIZE 1
 # include <sys/types.h>
 # include <sys/uio.h>
 # include <unistd.h>

@@ -12,7 +12,7 @@
 
 #include "filler.h"
 
-void	init_filler(t_f *f)
+static void	init_filler(t_f *f)
 {
 	char	*line;
 	char	**tmp;
@@ -25,7 +25,7 @@ void	init_filler(t_f *f)
 	ft_free_2d((void**)tmp);
 }
 
-void	read_piece(t_f *f, char *line)
+static void	read_piece(t_f *f, char *line)
 {
 	char			**tmp;
 	unsigned int	i;
@@ -44,10 +44,10 @@ void	read_piece(t_f *f, char *line)
 		f->piece[i] = ft_strdup(line);
 		free(line);
 	}
-	ft_printf("%d %d\n\n", f->piece_h, f->piece_w);
+	try_map(f);
 }
 
-void	read_map(t_f *f, char *line)
+static void	read_map(t_f *f, char *line)
 {
 	char			**tmp;
 	unsigned int	i;
@@ -72,7 +72,7 @@ void	read_map(t_f *f, char *line)
 	}
 }
 
-int		main(void)
+int			main(void)
 {
 	t_f		f;
 	char	*line;

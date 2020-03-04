@@ -32,4 +32,6 @@ typedef struct		s_filler
 	char			**piece;
 }					t_f;
 
+int					try_map (t_f *f);
+
 #endif
