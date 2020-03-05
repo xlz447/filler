@@ -23,6 +23,7 @@ static void	init_filler(t_f *f)
 	f->symbol = f->player == 1 ? 'O' : 'X';
 	free(line);
 	ft_free_2d((void**)tmp);
+	f->fit_count = 0;
 }
 
 static void	read_piece(t_f *f, char *line)
