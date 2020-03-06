@@ -22,8 +22,8 @@
 
 typedef struct		s_point
 {
-	unsigned int	x;
-	unsigned int	y;
+	int	x;
+	int	y;
 }					t_p;
 
 typedef struct		s_hit
@@ -35,16 +35,16 @@ typedef struct		s_hit
 
 typedef struct		s_filler
 {
-	unsigned int	player;
+	int				player;
 	char 			symbol;
-	unsigned int	map_h;
-	unsigned int	map_w;
+	int				map_h;
+	int				map_w;
 	char			**map;
-	unsigned int	piece_h;
-	unsigned int	piece_w;
+	int				piece_h;
+	int				piece_w;
 	char			**piece;
 	t_h				*fits;
-	unsigned int	fit_count;
+	int				fit_count;
 }					t_f;
 
 int					try_map (t_f *f);

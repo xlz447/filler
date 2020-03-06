@@ -28,8 +28,8 @@ static void	init_filler(t_f *f)
 
 static void	read_piece(t_f *f, char *line)
 {
-	char			**tmp;
-	unsigned int	i;
+	char	**tmp;
+	int		i;
 
 	tmp = ft_strsplit(line, ' ');
 	f->piece_h = ft_atoi(tmp[1]);
@@ -50,8 +50,8 @@ static void	read_piece(t_f *f, char *line)
 
 static void	read_map(t_f *f, char *line)
 {
-	char			**tmp;
-	unsigned int	i;
+	char	**tmp;
+	int		i;
 
 	tmp = ft_strsplit(line, ' ');
 	f->map_h = ft_atoi(tmp[1]);
