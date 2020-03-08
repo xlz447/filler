@@ -80,6 +80,7 @@ typedef struct				s_pf
 typedef void	(*t_pick_me)(t_pf *p, union u_type *t, va_list ap);
 
 int							ft_printf(const char *format, ...);
+int							ft_printf_fd(int fd, const char *format, ...);
 int							dispatch(t_pf *p, char *s, va_list ap[2], int fd);
 int							setup(t_pf *p, char *s, int i, va_list ap);
 void						ft_printf_diuoxb(t_pf *p,

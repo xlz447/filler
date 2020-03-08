@@ -12,18 +12,31 @@
 
 #include "filler.h"
 
-static void	init_filler(t_f *f)
+static void average_piece_size(t_f *f)
 {
-	char	*line;
-	char	**tmp;
+	t_p		cur;
+	t_p		min;
+	t_p		max;
 
-	get_next_line(0, &line);
-	tmp = ft_strsplit(line, ' ');
-	f->player = tmp[2][1] - '0';
-	f->symbol = f->player == 1 ? 'O' : 'X';
-	free(line);
-	ft_free_2d((void**)tmp);
-	f->fit_count = 0;
+	min.x = 2147483647;
+	min.y = 2147483647;
+	max.x = -2147483648;
+	max.y = -2147483648;
+	cur.y = -1;
+	while (++cur.y < f->piece_h)
+	{
+		cur.x = -1;
+		while (++cur.x < f->piece_w)
+		{
+			if (f->piece[cur.y][cur.x] == '*')
+			{
+				set_min_max(&cur, &min, &max);
+			}
+		}
+	}
+	f->aps_sum.x += (max.x - min.x + 1);
+	f->aps_sum.y += (max.y - min.y + 1);
+	f->piece_count++;
 }
 
 static void	read_piece(t_f *f, char *line)
@@ -45,7 +58,7 @@ static void	read_piece(t_f *f, char *line)
 		f->piece[i] = ft_strdup(line);
 		free(line);
 	}
-	try_map(f);
+	average_piece_size(f);
 }
 
 static void	read_map(t_f *f, char *line)
@@ -73,6 +86,23 @@ static void	read_map(t_f *f, char *line)
 	}
 }
 
+static void	init_filler(t_f *f)
+{
+	char	*line;
+	char	**tmp;
+
+	get_next_line(0, &line);
+	tmp = ft_strsplit(line, ' ');
+	f->player = tmp[2][1] - '0';
+	f->symbol = f->player == 1 ? 'O' : 'X';
+	free(line);
+	ft_free_2d((void**)tmp);
+	f->fit_count = 0;
+	f->piece_count = 0;
+	f->aps_sum.x = 0;
+	f->aps_sum.y = 0;
+}
+
 int			main(void)
 {
 	t_f		f;
@@ -84,7 +114,10 @@ int			main(void)
 		if (ft_strstr(line, "Plateau"))
 			read_map(&f, line);
 		else if (ft_strstr(line, "Piece"))
+		{
 			read_piece(&f, line);
+			solve(&f);
+		}
 		else
 			continue ;
 	}

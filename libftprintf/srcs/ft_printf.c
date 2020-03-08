@@ -12,6 +12,21 @@
 
 #include "ft_printf.h"
 
+int	ft_printf_fd(int fd, const char *format, ...)
+{
+	t_pf	p;
+	va_list	ap[2];
+	int		out;
+
+	ft_bzero(&p, sizeof(p));
+	va_start(ap[0], format);
+	va_copy(ap[1], ap[0]);
+	out = dispatch(&p, (char*)format, ap, fd);
+	va_end(ap[0]);
+	va_end(ap[1]);
+	return (out);
+}
+
 int	ft_printf(const char *format, ...)
 {
 	t_pf	p;

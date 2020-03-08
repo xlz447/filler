@@ -43,10 +43,15 @@ typedef struct		s_filler
 	int				piece_h;
 	int				piece_w;
 	char			**piece;
+	int				piece_count;
 	t_h				*fits;
 	int				fit_count;
+	t_p				aps_sum;
+	t_p				enemy_pre;
+	t_p				enemy_ppre;
 }					t_f;
 
-int					try_map (t_f *f);
+int					solve(t_f *f);
+void				set_min_max(t_p *cur, t_p *min, t_p *max);
 
 #endif
